@@ -1,0 +1,38 @@
+table {
+    background: rgb(93, 97, 97);
+    /* border-radius: 5px; */
+    /* border-color: aqua; */
+    /* color: aliceblue; */
+    font-size: large;
+}
+
+td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+    /* color: aqua; */
+}
+
+
+/* th:hover {
+    background: red;
+} */
+
+tr:nth-child(even) {
+    background: #373838;
+}
+
+.row {
+    background: rgb(134, 150, 222);
+}
+
+.trHeading{
+    background: rgb(111, 102, 102);
+}
+
+.demo{
+    background: rgb(162, 192, 222);
+    background: rgb(219, 218, 221);
+    text-align: center;
+    color: white;
+}

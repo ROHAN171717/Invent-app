@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&family=Bree+Serif&family=Corinthia:wght@700&family=Josefin+Sans:wght@200;300;400;500&family=Lora:ital,wght@1,400;1,500&family=Noto+Serif:wght@700&family=Readex+Pro:wght@300&family=Roboto&family=Varela&family=Varela+Round&display=swap');
+
+.body {
+    font-family: 'Baloo Bhaina 2', cursive;
+    /* font-family: 'Bree Serif', serif; */
+    /* font-family: 'Corinthia', cursive; */
+    /* font-family: 'Josefin Sans', sans-serif; */
+    /* font-family: 'Lora', serif; */
+    /* font-family: 'Noto Serif', serif; */
+    /* font-family: 'Readex Pro', sans-serif; */
+    /* font-family: 'Roboto', sans-serif; */
+    /* font-family: 'Varela', sans-serif; */
+    /* font-family: 'Varela Round', sans-serif;   */
+}
+
+.bg {
+    /* background-image: url("../../assets/invent-3.jpeg"); */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(5px); /*Safari 6.0 - 9.0*/
+    filter: blur(4px);
+}
+
+demo{
+    background-color: rgb(62, 63, 62);
+    color:antiquewhite
+}
