@@ -82,7 +82,7 @@ const Contact = () => {
                     </span>
                     <span className='flex text-xl mb-2'>
                         <FaEnvelope className='mt-1 mr-2'/>
-                        <p>Support@invet.com</p>
+                        <p>Support@R-Invetory.com</p>
                     </span>
                     <span className='flex text-xl mb-2'>
                         <GoLocation className='mt-1 mr-2'/>

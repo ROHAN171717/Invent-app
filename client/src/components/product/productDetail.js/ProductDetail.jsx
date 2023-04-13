@@ -33,7 +33,7 @@ const ProductDetail = () => {
       }, [isLoggedIn, isError, message, dispatch, id]);
 
   return (
-    <div className='pt-12 pb-4 sm:py-4 body sm:h-full lg:h-[90vh] relative bg-slate-'>
+    <div className='pt-12 pb-4 sm:py-4 body sm:h-full lg:h-[90vh] relative'>
      <button className='btn btn-sm text-xl mt-2 pt-1 normal-case bg-slate-900 text-zinc-100
                         hover:bg-slate-400 hover:text-black absolute top-1 left-1 border-none'>
           <Link to="/dashboard" className='font-bold text-blue-500'>Back</Link>

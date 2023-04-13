@@ -12,11 +12,8 @@ const RightInfo = () => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log("isLoggedIn:-" + isLoggedIn);
   
   const {products, isLoading, isError, message } = useSelector(state => state.product);
-
-  console.log("products=" + products);
   
 
   useEffect(() => {

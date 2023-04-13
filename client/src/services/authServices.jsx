@@ -35,8 +35,6 @@ export const loginUser = async (userData) => {
         }
         return response.data;
     }catch(error){
-        console.log(error.response.data);
-        
         const message =(error.response && error.response.data && error.response.data.message) ||error.message ||error.toString();
         toast.error(message);
     }

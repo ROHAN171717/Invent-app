@@ -8,7 +8,8 @@ const Layout = ({ children }) => {
       <div className='bg-slate-600'>
       <Header/>
       <div>{children}</div>
-      {/* <Footer/> */}
+      {/* {children} */}
+      <Footer/>
       </div>
     </div>
   )

@@ -36,7 +36,6 @@ const ChangePassword = () => {
         }
 
         const data = await changePassword(formData);
-        console.log(data);
         setIsLoading(false);
         if(data?.response?.status === 400){
             toast.error(data);

@@ -43,13 +43,12 @@ const registerUser=asyncHandler(async (req,res,next)=>{
 
     //Generate Token
     const token=generateToken(user._id);
-    console.log(token);
     
 
     //Sent HTTP only cookie
     res.cookie("token",token,{
         httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 86400), // 1 Day
+        expires: new Date(Date.now() + 1 * 60 * 60 * 1000), // 1 Hour
     });
 
     if(user){
@@ -135,8 +134,6 @@ const getUser=asyncHandler(async (req,res,next)=>{
 //GET LOGIN STATUS
 const getLoginStatus=asyncHandler(async (req,res,next)=>{
     const token=req.cookies.token;
-    console.log("hello from login status")
-    console.log("token from login status "+token)
 
     if(!token){
         return res.json(false);
@@ -228,8 +225,6 @@ const forgotPassword=asyncHandler(async (req,res,next)=>{
 
     //Create reset token
     let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
-    console.log(resetToken);
-    
 
     //Hash token before saving to DB
     const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");

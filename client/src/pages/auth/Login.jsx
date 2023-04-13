@@ -31,13 +31,6 @@ const Login = () => {
 
     const login = async (e) => {
         e.preventDefault();
-
-        // if(!email || !password){
-        //     return toast.error("All fields are required");
-        // }
-        // if(password.length < 6){
-        //     return toast.error("Password must be up to 6 characters");
-        // }
         if(!validateEmail(email)){
             return toast.error("Please enter a avalid email");
         }

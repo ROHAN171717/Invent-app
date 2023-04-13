@@ -3,8 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../services/authServices';
 import { SET_LOGIN, selectName } from '../../redux/features/auth/authSlice';
-
-
+import logoImg from "../../assets/supplier-1.png"
 
 import * as React from 'react';
 import { useState } from 'react';
@@ -16,11 +15,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import IconButton from '@mui/material/IconButton';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-
-import GitHubIcon from '@mui/icons-material/GitHub';
-
-
-
 
 const Header = () => {
 
@@ -40,6 +34,7 @@ const Header = () => {
   const logout = async(e)=>{
     await logoutUser();
     await dispatch(SET_LOGIN({flag: false, name:""}));
+    localStorage.removeItem("name");
     navigate("/login");
   }
 
@@ -59,10 +54,9 @@ const Header = () => {
 
   return (
     <div className='flex justify-between pt-4 pb-3 bg-slate-800 shadow-md shadow-lime-100 sm:px-8 body'>
-      <GitHubIcon className='text-white' style={{fontSize:"30px"}}/>
-
+      <a href='/'><img src={logoImg} className='w-10 h-10 rounded-md'/></a>
       <div className='flex'>
-      <button className='btn btn-sm text-xl pt-1 mr-1 bg-slate-200 text-black hover:bg-slate-900 hover:text-zinc-100 shadow-md shadow-indigo-300 border-none'>
+      <button className='btn btn-sm text-xl pt-1 mr-1 bg-slate-200 text-black hover:bg-slate-400 border-none'>
         <Link to="/add-product">Add Product</Link>
       </button>
   

@@ -17,7 +17,6 @@ const createProduct = asyncHandler(async (req,res,next)=>{
     let fileData = {};
     if(req.file) {
         try{
-            // console.log(req.file);
             fileData= {
                 fileName: req.file.originalname + Date.now().toString(),
                 fileType: req.file.mimetype,
@@ -47,7 +46,6 @@ const createProduct = asyncHandler(async (req,res,next)=>{
 
 //GET ALL PRODUCTS
 const getProducts = asyncHandler(async (req,res,next)=>{
-    console.log(req.user);
     
     const products = await Product.find({ user: req.user._id }).sort("-createdAt");
     // if(products.length===0){
@@ -116,7 +114,6 @@ const updateProduct = asyncHandler(async (req,res,next)=>{
     let fileData = {};
     if(req.file) {
         try{
-            // console.log(req.file);
             fileData= {
                 fileName: req.file.originalname + Date.now().toString(),
                 fileType: req.file.mimetype,

@@ -18,7 +18,6 @@ const AddProduct = () => {
 
   useRedirectLoggedOutUser("/login");
 
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [product, setProduct] = useState(initialState);
@@ -55,8 +54,6 @@ const AddProduct = () => {
         formData.append("price", price);
         formData.append("description", description);
         formData.append("image", productImage);
-
-        console.log(...formData);
 
         await dispatch(create_Product(formData));
         navigate("/dashboard");

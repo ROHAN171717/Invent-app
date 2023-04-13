@@ -20,7 +20,6 @@ const Profile = () => {
 
         async function getUserData() {
             const data = await getUserProfile();
-            console.log(data);
 
             setProfile(data);
             setIsLoading(false);

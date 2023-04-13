@@ -1,28 +1,25 @@
 import React from 'react'
-// import { RiProductHuntLine } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import heroImg from "../../assets/inv-img.png";
-// import { Oval } from 'react-loader-spinner';
-import inventImg from "../../assets/invent-33.jpeg";
 import "./Home.css";
+import { selectIsLoggedIn } from '../../redux/features/auth/authSlice';
+import useRedirectLoggedOutUser from '../../customeHook/useRedirectLoggedOutUser';
 
 
 
 const Home = () => {
-    const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
-    // console.log(isLoggedIn);
-    const login=isLoggedIn;
+    const login = localStorage.getItem("name");
+
   return (
     <div className='bg-slate-700 h-screen'>
         <div className="body px-4 sm:px-14 bg-slate-700">
-        {/* NAVBAR */}
         <div className="navbar pt-5">
             <div className="flex-1">
-                <a className="btn btn-md normal-case text-xl hover:bg-slate-900 hover:text-zinc-100
-                        bg-slate-200 text-black" href="/">daisyUI</a>
+                {/* <a className="btn btn-md normal-case text-xl hover:bg-slate-900 hover:text-zinc-100
+                        bg-slate-200 text-black" href="/">R-Invent</a> */}
             </div>
-            <div className="flex-none">
+            <div>
                 <ul className="menu menu-horizontal px-1">
                     
                     {login ? (

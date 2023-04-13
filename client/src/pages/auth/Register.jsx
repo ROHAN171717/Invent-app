@@ -36,12 +36,6 @@ const Register = () => {
     const register = async (e) => {
         e.preventDefault();
 
-        if(!name || !email || !password){
-            return toast.error("All fields are required");
-        }
-        if(password.length < 6){
-            return toast.error("Password must be up to 6 characters");
-        }
         if(!validateEmail(email)){
             return toast.error("Please enter a avalid email");
         }
@@ -57,7 +51,6 @@ const Register = () => {
         setIsLoading(true);
         try{
             const data = await registerUser(userData);
-            console.log(data);
             await dispatch(SET_LOGIN(true));
             await dispatch(SET_NAME(data.name));
             navigate("/dashboard");
