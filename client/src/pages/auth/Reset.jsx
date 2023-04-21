@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { resetPassword} from "../../services/authServices";
 
@@ -16,6 +16,7 @@ const Reset = () => {
     const [formData,setFormData] = useState(initialState);
     const { password, password2 } = formData;
     const { resetToken } = useParams();
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -47,9 +48,9 @@ const Reset = () => {
             setIsLoading(false);
         }catch(error){
             setIsLoading(false);
-            console.log(error.message);
-            
+            console.log(error.message); 
         }
+        navigate("/login");
     }
   return (
     <div>
