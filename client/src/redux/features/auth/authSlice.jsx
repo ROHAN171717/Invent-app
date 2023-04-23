@@ -1,41 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 // const name = JSON.parse(localStorage.getItem("name"));
 // const name = localStorage.getItem("name") ===! undefined ? JSON.parse(localStorage.getItem("name")) : null;
 
-const initialState = {
-  isLoggedIn: false,
-  name: "",
-  user: {
+const initialState={
+    isLoggedIn: false,
     name: "",
-    email: "",
-    phone: "",
-    bio: "",
-    photo: "",
-  },
+    user:{
+        name: "",
+        email: "",
+        phone: "",
+        bio: "",
+        photo: "",
+    },
 };
 
-const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  reducers: {
-    SET_LOGIN: (state, action) => {
-      state.isLoggedIn = action.payload.flag;
-      state.name = action.payload.name;
+const authSlice=createSlice({   
+    name: "auth",
+    initialState,
+    reducers:{
+        SET_LOGIN:(state,action)=>{
+            state.isLoggedIn = action.payload.flag;
+            state.name = action.payload.name;
+        },
+        SET_NAME(state,action){
+            localStorage.setItem("name",JSON.stringify(action.payload));
+            state.name = action.payload;
+        },
+        SET_USER:(state,action)=>{
+            const profile = action.payload;
+            state.user.name = profile.name;
+            state.user.email = profile.email;
+            state.user.phone = profile.phone;
+            state.user.bio = profile.bio;
+            state.user.photo = profile.photo;
+        },
     },
-    SET_NAME(state, action) {
-      localStorage.setItem("name", JSON.stringify(action.payload));
-      state.name = action.payload;
-    },
-    SET_USER: (state, action) => {
-      const profile = action.payload;
-      state.user.name = profile.name;
-      state.user.email = profile.email;
-      state.user.phone = profile.phone;
-      state.user.bio = profile.bio;
-      state.user.photo = profile.photo;
-    },
-  },
 });
 
 export default authSlice.reducer;

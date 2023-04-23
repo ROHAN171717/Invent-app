@@ -4,6 +4,9 @@ import axios from "axios";
 
 // const axios = axioss.create({ baseURL: "http://localhost:4000" });
 
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
+axios.defaults.withCredentials = true;
+
 //CREATE NEW PRODUCT
 export const createProduct = async (formData) => {
   const response = await axios.post(`/api/products`, formData);

@@ -14,6 +14,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  console.log(isLoggedIn);
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
 
   useEffect(() => {
