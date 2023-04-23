@@ -13,11 +13,19 @@ const path = require("path");
 const app = express();
 
 //MIDDLEWARE
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token", "Access-Control-Allow-Origin"],
+    credentials: true,
+    exposedHeaders: ["*", "Authorization"],
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
@@ -25,6 +33,10 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/contact", contactRoute);
+
+app.get("/api", (req, res) => {
+  res.send("<h1>Home Page...</h1>");
+});
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
