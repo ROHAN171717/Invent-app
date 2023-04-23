@@ -13,7 +13,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn =localStorage.getItem('name') !== null ? true : false;
   console.log(isLoggedIn);
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
 

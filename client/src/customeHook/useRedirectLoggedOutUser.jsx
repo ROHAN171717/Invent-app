@@ -18,12 +18,12 @@ const useRedirectLoggedOutUser = (path) => {
         return;
       }
 
-      dispatch(
-        SET_LOGIN({
-          flag: isLoggedIn,
-          name: localStorage.getItem("name").substring(1, localStorage.getItem("name").length - 1),
-        })
-      );
+      // dispatch(
+      //   SET_LOGIN({
+      //     flag: isLoggedIn,
+      //     name: localStorage.getItem("name").substring(1, localStorage.getItem("name").length - 1),
+      //   })
+      // );
 
     };
   useEffect(() => {

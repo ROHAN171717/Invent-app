@@ -2,7 +2,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../services/authServices";
-import { SET_LOGIN, selectName } from "../../redux/features/auth/authSlice";
+import { SET_LOGIN, SET_LOGOUT, selectName } from "../../redux/features/auth/authSlice";
 import logoImg from "../../assets/supplier-1.png";
 
 import * as React from "react";
@@ -28,12 +28,12 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const name = useSelector(selectName);
+  const name = localStorage.getItem("name").charAt(1);
 
   const logout = async (e) => {
     await logoutUser();
-    await dispatch(SET_LOGIN({ flag: false, name: "" }));
-    localStorage.removeItem("name");
+    // await dispatch(SET_LOGIN({ flag: false, name: "" }));
+    await dispatch(SET_LOGOUT());
     navigate("/login");
   };
 
