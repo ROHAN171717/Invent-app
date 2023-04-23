@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import { forgotPassword, validateEmail } from "../../services/authServices";
 
 const Forgot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+
+  const user = localStorage.getItem("name");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user != null) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   const forgot = async (e) => {
     e.preventDefault();

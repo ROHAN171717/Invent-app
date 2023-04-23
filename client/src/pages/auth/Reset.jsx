@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -16,6 +16,14 @@ const Reset = () => {
   const { password, password2 } = formData;
   const { resetToken } = useParams();
   const navigate = useNavigate();
+
+  const user = localStorage.getItem("name");
+
+  useEffect(() => {
+    if (user != null) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
