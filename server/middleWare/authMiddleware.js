@@ -12,7 +12,7 @@ const protect = asyncHandler(async (req, res, next) => {
     if (!token) {
       res.status(401);
       console.log("Not cookie");
-      throw new Error("Not Cookie");
+      throw new Error("Not Cookie 1");
     }
 
     //verify token
@@ -30,7 +30,7 @@ const protect = asyncHandler(async (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(401);
-    throw new Error("Not authorized, please login");
+    throw new Error("Not cookie 2");
   }
 });
 
