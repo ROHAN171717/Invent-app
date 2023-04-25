@@ -6,8 +6,8 @@ import { selectIsLoggedIn } from "../../../redux/features/auth/authSlice";
 import { get_Product } from "../../../redux/features/product/productSlice";
 import Loader from "../../Loader/Loader";
 
-const ProductDetail = async() => {
-  await useRedirectLoggedOutUser("/login");
+const ProductDetail =() => {
+  useRedirectLoggedOutUser("/login");
 
   const dispatch = useDispatch();
   const { id } = useParams();
