@@ -99,7 +99,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
 
   if (user && isPasswordCorrect) {
     const { _id, name, email, photo, phone, bio } = user;
-    res.cookie("token", token);
+    // res.cookie("token", token);
     res.status(200).json({
       _id,
       name,
@@ -118,11 +118,11 @@ const loginUser = asyncHandler(async (req, res, next) => {
 //LOGOUT USER
 const logoutUser = asyncHandler(async (req, res, next) => {
   res.cookie("token", "", {
-    path: "/",
+    // path: "/",
     httpOnly: true,
     expires: new Date(0), //current second
-    sameSite: "none",
-    secure: true,
+    // sameSite: "none",
+    // secure: true,
   });
   return res.status(200).json({ message: "Successfully Logged Out..." });
 });
