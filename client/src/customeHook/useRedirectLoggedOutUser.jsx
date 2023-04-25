@@ -11,7 +11,7 @@ const useRedirectLoggedOutUser = (path) => {
 
   const redirectLoogedOutUser = async () => {
       // const isLoggedIn = await getLoginStatus();
-      const isLoggedIn = localStorage.getItem('user') !== null ? true : false;
+      const isLoggedIn = await localStorage.getItem('user') !== null ? true : false;
 
       if (!isLoggedIn) {
         // dispatch(SET_LOGOUT());

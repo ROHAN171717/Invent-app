@@ -6,7 +6,7 @@ import { selectIsLoggedIn } from "../../../redux/features/auth/authSlice";
 import { get_Product } from "../../../redux/features/product/productSlice";
 import Loader from "../../Loader/Loader";
 
-const ProductDetail =() => {
+const ProductDetail = () => {
   useRedirectLoggedOutUser("/login");
 
   const dispatch = useDispatch();
