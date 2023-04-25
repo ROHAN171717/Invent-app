@@ -1,8 +1,8 @@
 // import React from 'react'
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logoutUser } from "../../services/authServices";
-import { SET_LOGIN, SET_LOGOUT, selectName } from "../../redux/features/auth/authSlice";
+import { SET_LOGOUT } from "../../redux/features/auth/authSlice";
 import logoImg from "../../assets/supplier-1.png";
 
 import * as React from "react";
@@ -17,6 +17,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
 const Header = () => {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -28,16 +29,13 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const name = localStorage.getItem("name").charAt(1);
+  const name = localStorage.getItem("name")?.charAt(1).toUpperCase();
 
   const logout = async (e) => {
     await logoutUser();
-    // await dispatch(SET_LOGIN({ flag: false, name: "" }));
-    await dispatch(SET_LOGOUT());
+    dispatch(SET_LOGOUT());
     navigate("/login");
   };
-
-  const nameFirstLetter = name?.charAt(0).toUpperCase();
 
   //hovering effect
   const [isHovering, setIsHovering] = useState(false);
@@ -74,7 +72,7 @@ const Header = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              {nameFirstLetter}
+              {name}
             </Avatar>
           </IconButton>
         </Box>

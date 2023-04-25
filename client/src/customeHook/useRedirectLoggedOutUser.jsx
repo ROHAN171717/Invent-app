@@ -10,24 +10,24 @@ const useRedirectLoggedOutUser = (path) => {
   const dispatch = useDispatch();
 
   const redirectLoogedOutUser = async () => {
-      // const isLoggedIn = await getLoginStatus();
-      const isLoggedIn = await localStorage.getItem('user') !== null ? true : false;
+    const isLoggedIn = localStorage.getItem("user") !== null ? true : false;
 
-      if (!isLoggedIn) {
-        // dispatch(SET_LOGOUT());
-        toast.info("Session expired, please login to continue.");
-        navigate(path);
-        return;
-      }
+    // const token = JSON.parse(localStorage.getItem("user")).token;
+    // console.log(token);
 
-      // dispatch(
-      //   SET_LOGIN({
-      //     flag: isLoggedIn,
-      //     name: localStorage.getItem("name").substring(1, localStorage.getItem("name").length - 1),
-      //   })
-      // );
+    if (!isLoggedIn) {
+      toast.info("Session expired, please login to continue.");
+      navigate(path);
+      return;
+    }
 
-    };
+    // dispatch(
+    //   SET_LOGIN({
+    //     flag: isLoggedIn,
+    //     name: localStorage.getItem("name").substring(1, localStorage.getItem("name").length - 1),
+    //   })
+    // );
+  };
   useEffect(() => {
     redirectLoogedOutUser();
   }, [navigate, path, dispatch]);

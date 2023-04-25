@@ -103,8 +103,8 @@ const ProductList = ({ products, isLoading }) => {
   };
 
   const deleteProduct = async (id) => {
-    await dispatch(delete_Product(id));
-    await dispatch(get_Products());
+    dispatch(delete_Product(id));
+    dispatch(get_Products());
   };
 
   const confirmDelete = (id) => {

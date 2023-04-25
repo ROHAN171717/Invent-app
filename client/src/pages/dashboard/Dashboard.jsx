@@ -14,19 +14,16 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const isLoggedIn =localStorage.getItem('user') !== null ? true : false;
-  // console.log(isLoggedIn);
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
 
   useEffect(() => {
-    if (isLoggedIn === true) {
-      console.log('hello');
-      dispatch(get_Products());
-    }
 
     if (isError) {
-      toast.error(message);
+      // toast.error(message);
       navigate("/login");
     }
+      dispatch(get_Products());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn, isError, message, dispatch]);
 
