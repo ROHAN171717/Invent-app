@@ -14,7 +14,7 @@ const useRedirectLoggedOutUser = (path) => {
       const isLoggedIn = localStorage.getItem('user') !== null ? true : false;
 
       if (!isLoggedIn) {
-        dispatch(SET_LOGOUT());
+        // dispatch(SET_LOGOUT());
         toast.info("Session expired, please login to continue.");
         navigate(path);
         return;

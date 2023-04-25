@@ -13,8 +13,8 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isLoggedIn =localStorage.getItem('name') !== null ? true : false;
-  console.log(isLoggedIn);
+  const isLoggedIn =localStorage.getItem('user') !== null ? true : false;
+  // console.log(isLoggedIn);
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
 
   useEffect(() => {
