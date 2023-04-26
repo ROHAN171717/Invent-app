@@ -8,7 +8,10 @@ const User = require("../models/userModel");
 const protect = asyncHandler(async (req, res, next) => {
   try {
     // const token = req.cookies.token;
-    const token = req.headers.authorization;
+    const token = req.headers.cookie.substring(6);
+    // console.log("Bearer ",token);
+    // console.log(req.headers);
+    // console.log(req.cookies);
 
     if (!token) {
       res.status(401);
