@@ -1,15 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// export const BACKEND_URL = "http://localhost:3001";
-
-// const axios = axioss.create({ baseURL: "http://localhost:4000" });
-
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 axios.defaults.withCredentials = true;
 
 const token = JSON.parse(localStorage.getItem("user"))?.token;
-// console.log(token);
 axios.defaults.headers.common["Authorization"] = token;
 
 export const validateEmail = (email) => {
@@ -39,6 +34,7 @@ export const loginUser = async (userData) => {
     const response = await axios.post(`/api/users/login`, userData);
     if (response.statusText === "OK") {
       toast.success("Login Successfully");
+      localStorage.setItem("user", JSON.stringify(response.data));
     }
     return response.data;
   } catch (error) {

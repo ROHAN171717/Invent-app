@@ -34,7 +34,7 @@ export const create_Product = createAsyncThunk("products/create", async (FormDat
 });
 
 //GET ALL PRODUCTS
-export const get_Products = createAsyncThunk("products/getAll", async (_, thunkAPI) => {
+export const get_Products = createAsyncThunk("products/getAll", async (__, thunkAPI) => {
   try {
     return await getProducts();
   } catch (error) {

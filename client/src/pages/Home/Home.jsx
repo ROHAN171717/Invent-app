@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import heroImg from "../../assets/inv-img.png";
 import "./Home.css";
-import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
-import useRedirectLoggedOutUser from "../../customeHook/useRedirectLoggedOutUser";
 
 const Home = () => {
   const login = localStorage.getItem("name");
@@ -14,8 +12,6 @@ const Home = () => {
       <div className="body px-4 sm:px-14 bg-slate-700">
         <div className="navbar pt-5">
           <div className="flex-1">
-            {/* <a className="btn btn-md normal-case text-xl hover:bg-slate-900 hover:text-zinc-100
-                        bg-slate-200 text-black" href="/">R-Invent</a> */}
           </div>
           <div>
             <ul className="menu menu-horizontal px-1">

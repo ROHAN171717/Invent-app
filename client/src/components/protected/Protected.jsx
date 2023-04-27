@@ -2,17 +2,20 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
+import { toast } from "react-toastify";
 
-const Protected = ({ isLoggedIn, children }) => {
+
+const Protected = ({ Components }) => {
   const navigate = useNavigate();
-//   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = localStorage.getItem("user");
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
+      toast.info("Session expired, please login to continue.");
       return;
     }
   });
-  return children;
+  return Components
 };
 
 export default Protected;

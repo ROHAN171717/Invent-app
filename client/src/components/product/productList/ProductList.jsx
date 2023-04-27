@@ -104,7 +104,8 @@ const ProductList = ({ products, isLoading }) => {
 
   const deleteProduct = async (id) => {
     dispatch(delete_Product(id));
-    dispatch(get_Products());
+    // dispatch(get_Products());
+    // window.location.reload();
   };
 
   const confirmDelete = (id) => {
@@ -169,9 +170,9 @@ const ProductList = ({ products, isLoading }) => {
           </div>
         </div>
       </div>
-      {isLoading ? (
+      {/* {isLoading ? (
         <Loader />
-      ) : (
+      ) : ( */}
         <div className="overflow-x-auto rounded-2xl">
           {!isLoading && products.length === 0 ? (
             <p
@@ -264,7 +265,7 @@ const ProductList = ({ products, isLoading }) => {
             </Paper>
           )}
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 };

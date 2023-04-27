@@ -6,13 +6,14 @@ const Loader = () => {
     <div style={{ position: "fixed", left: "50%", top: "50%", transform: "translate(-50%,-50%)", zIndex: "1" }}>
       <Oval
         ariaLabel="loading-indicator"
-        height={100}
-        width={100}
+        height={60}
+        width={60}
         strokeWidth={5}
         strokeWidthSecondary={3}
         color="white"
         secondaryColor="black"
       />
+      
     </div>
   );
 };

@@ -15,6 +15,8 @@ const ProductDetail = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { product, isLoading, isError, message } = useSelector((state) => state.product);
 
+  console.log("isloaggedIn ",isLoggedIn);
+
   const stockStatus = (quantity) => {
     if (quantity > 0) {
       return <span>In Stock</span>;
@@ -23,6 +25,7 @@ const ProductDetail = () => {
   };
   useEffect(() => {
     if (isLoggedIn === true) {
+      console.log("hello")
       dispatch(get_Product(id));
     }
 

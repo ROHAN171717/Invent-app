@@ -2,16 +2,12 @@ const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 // const bcrypt=require("bcryptjs");
-
 // const AppError = require("../middleWare/errorMiddleware");
 
 const protect = asyncHandler(async (req, res, next) => {
   try {
-    // const token = req.headers.cookie.substring(6);
     const token = req.headers.authorization;
-    // console.log("Bearer ",token);
-    // console.log(req.headers);
-    // console.log(req.cookies);
+    console.log("Bearer ", token);
 
     if (!token) {
       res.status(401);
@@ -35,7 +31,6 @@ const protect = asyncHandler(async (req, res, next) => {
     res.status(401);
     throw new Error("Not authorized, please login");
   }
-
 });
 
 module.exports = protect;

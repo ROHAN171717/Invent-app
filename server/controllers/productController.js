@@ -44,17 +44,20 @@ const createProduct = asyncHandler(async (req, res, next) => {
 
 //GET ALL PRODUCTS
 const getProducts = asyncHandler(async (req, res, next) => {
-  const products = await Product.find({ user: req.user._id }).sort("-createdAt");
+  const products = await Product.find({ user: req.user.id }).sort("-createdAt");
   // if(products.length===0){
   //     res.status(400);
   //     throw new Error("No any Products");
   // }
+  // console.log(products);
   res.status(200).json(products);
 });
 
 //GET SINGLE PRODUCT
 const getProduct = asyncHandler(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
+  console.log("singleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+  console.log(product);
   //if product does not exist
   if (!product) {
     res.status(404);

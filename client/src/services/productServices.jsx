@@ -1,9 +1,5 @@
 import axios from "axios";
 
-// export const BACKEND_URL = "http://localhost:3001";
-
-// const axios = axioss.create({ baseURL: "http://localhost:4000" });
-
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 axios.defaults.withCredentials = true;
 
@@ -30,6 +26,7 @@ export const deleteProduct = async (id) => {
 
 //GET A PRODUCT
 export const getProduct = async (id) => {
+  console.log(id);
   const response = await axios.get(`/api/products/${id}`);
   return response.data;
 };
