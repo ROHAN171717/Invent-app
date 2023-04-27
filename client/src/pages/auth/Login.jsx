@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ const initialState = {
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
@@ -40,13 +41,19 @@ const Login = () => {
       const data = await loginUser(userData);
       dispatch(SET_LOGIN(data));
       dispatch(SET_NAME(data.name));
-      navigate("/dashboard");
       setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (user != null) {
+      navigate("/dashboard");
+    }
+  }, [login, user]);
+
   return (
     <div>
       {isLoading && <Loader />}

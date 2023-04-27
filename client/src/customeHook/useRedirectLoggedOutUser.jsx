@@ -9,20 +9,18 @@ const useRedirectLoggedOutUser = (path) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const redirectLoogedOutUser = async () => {
-    // const isLoggedIn = localStorage.getItem("user") !== null ? true : false;
-    const isLoggedIn = await getLoginStatus();
-    console.log(isLoggedIn);
-
+  const isLoggedIn = localStorage.getItem("user") !== null ? true : false;
+  const redirectLoogedOutUser =  () => {
+    // const isLoggedIn = await getLoginStatus();
     if (!isLoggedIn) {
-      // toast.info("Session expired, please login to continue.");
+      toast.info("Not authorized, please login to continue.");
       navigate(path);
       return;
     }
   };
   useEffect(() => {
     redirectLoogedOutUser();
-  }, [navigate, path, dispatch, isLoggedIn]);
+  }, [isLoggedIn]);
 };
 
 export default useRedirectLoggedOutUser;

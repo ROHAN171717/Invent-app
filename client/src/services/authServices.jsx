@@ -17,8 +17,11 @@ export const validateEmail = (email) => {
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`/api/users/register`, userData, { withCredentials: true });
-    if (response.statusText === "OK") {
+    // console.log(response.statusText);
+    if (response.statusText === "Created") {
       toast.success("User Registered Successfully");
+      console.log(response.data);
+      localStorage.setItem("user", JSON.stringify(response.data));
     }
     return response.data;
   } catch (error) {

@@ -18,7 +18,7 @@ import Protected from "./components/protected/Protected";
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

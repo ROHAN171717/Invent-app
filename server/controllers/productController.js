@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const mongoose = require("mongoose");
 
 const Product = require("../models/productModel");
 
@@ -55,11 +56,17 @@ const getProducts = asyncHandler(async (req, res, next) => {
 
 //GET SINGLE PRODUCT
 const getProduct = asyncHandler(async (req, res, next) => {
+
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    console.log("id")
+    res.status(400);
+    throw new Error("Product not exist with this Id");
+  }
+
   const product = await Product.findById(req.params.id);
-  console.log("singleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-  console.log(product);
   //if product does not exist
-  if (!product) {
+  if (product.length === 0) {
+    console.log("not")
     res.status(404);
     throw new Error("Product not found");
   }

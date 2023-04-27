@@ -21,14 +21,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = localStorage.getItem("name");
-
-  useEffect(() => {
-    if (user != null) {
-      navigate("/dashboard");
-    }
-  }, []);
-
+  const user = JSON.parse(localStorage.getItem("user"));
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState(initialState);
   const { name, email, password, password2 } = formData;
@@ -57,14 +50,22 @@ const Register = () => {
     try {
       const data = await registerUser(userData);
       console.log(data);
-      dispatch(SET_LOGIN(data));
+      // dispatch(SET_LOGIN(data));
       dispatch(SET_NAME(data.name));
       navigate("/dashboard");
+      // window.location.href = "/dashboard";
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
     }
   };
+
+   useEffect(() => {
+     if (user != null) {
+       navigate("/dashboard");
+     }
+   }, [register, user]);
+
   return (
     <div>
       {isLoading && <Loader />}

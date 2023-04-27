@@ -10,29 +10,22 @@ import { get_Product, get_Products } from "../../redux/features/product/productS
 import Loader from "../../components/Loader/Loader";
 
 const Dashboard = () => {
-  // useRedirectLoggedOutUser("/login");
+  useRedirectLoggedOutUser("/login");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const isLoggedIn = localStorage.getItem("user") !== null ? true : false;
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
-  const id = JSON.parse(localStorage.getItem("user"))?._id;
 
-  useEffect(() => {
-    // if (!isLoggedIn) {
-    //   navigate("/login");
-    //   return;
-    // } else dispatch(get_Products());
-
-    if (isLoggedIn) {
-      dispatch(get_Products());
-    } else {
-      navigate("/login");
-      return;
-    }
-
+  useEffect(
+    () => {
+      if (isLoggedIn) {
+        dispatch(get_Products());
+      }
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn, isError, message, dispatch]);
+    [isLoggedIn]
+  );
 
   if (isLoading) {
     return <Loader />;

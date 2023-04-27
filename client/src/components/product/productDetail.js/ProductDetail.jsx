@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import useRedirectLoggedOutUser from "../../../customeHook/useRedirectLoggedOutUser";
 import { selectIsLoggedIn } from "../../../redux/features/auth/authSlice";
 import { get_Product } from "../../../redux/features/product/productSlice";
 import Loader from "../../Loader/Loader";
+
 
 const ProductDetail = () => {
   useRedirectLoggedOutUser("/login");
@@ -12,10 +13,10 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = localStorage.getItem("user") !== null ? true : false;
   const { product, isLoading, isError, message } = useSelector((state) => state.product);
-
-  console.log("isloaggedIn ",isLoggedIn);
+  const navigate = useNavigate();
 
   const stockStatus = (quantity) => {
     if (quantity > 0) {
@@ -32,7 +33,12 @@ const ProductDetail = () => {
     if (isError) {
       console.log(message);
     }
-  }, [isLoggedIn, isError, message, dispatch, id]);
+    // dispatch(get_Product(id));
+  }, [isLoggedIn, id]);
+
+  if (isError && isLoggedIn) {
+    navigate("/dashboard");
+  }
 
   return (
     <div className="pt-12 pb-4 sm:py-4 body sm:h-full lg:h-[90vh] relative">

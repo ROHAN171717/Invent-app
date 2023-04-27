@@ -15,24 +15,35 @@ import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 
 const EditProduct = () => {
   const navigate = useNavigate();
-
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  if (!isLoggedIn) {
-    navigate("/login");
-  }
+    useRedirectLoggedOutUser("/login");
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = localStorage.getItem("user") !== null ? true : false;
 
   const { id } = useParams();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
 
   const productEdit = useSelector(selectProduct);
+  const { isError } = useSelector((state) => state.product);
+
 
   const [product, setProduct] = useState(productEdit);
   const [productImage, setProductImage] = useState("");
 
+  // useEffect(() => {
+  //   dispatch(get_Product(id));
+  // }, [dispatch, id]);
   useEffect(() => {
-    dispatch(get_Product(id));
-  }, [dispatch, id]);
+    if (isLoggedIn === true) {
+      console.log("hello");
+      dispatch(get_Product(id));
+    }
+
+    if (isError) {
+      console.log(message);
+    }
+    // dispatch(get_Product(id));
+  }, [isLoggedIn, id]);
 
   useEffect(() => {
     setProduct(productEdit);
@@ -51,7 +62,6 @@ const EditProduct = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", product?.name);
-
     formData.append("category", product?.category);
     formData.append("quantity", product?.quantity);
     formData.append("price", product?.price);
@@ -59,11 +69,17 @@ const EditProduct = () => {
     if (productImage) {
       formData.append("image", productImage);
     }
-
-    await dispatch(update_Product({ id, formData }));
-    await dispatch(get_Products());
-    navigate("/dashboard");
+    dispatch(update_Product({ id, formData }));
+    setTimeout(() => {
+      navigate("/dashboard");
+    },[100])
   };
+
+
+  if (isError && isLoggedIn) {
+    navigate("/dashboard");
+  }
+
   return (
     <div className="relative body">
       <button
